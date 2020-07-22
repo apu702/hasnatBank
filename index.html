@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasnat Bank</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--Part 1 (Form) Start-->
+   <div id="login-area">
+         <h1 class="text-center"> Welcome To Hasnat Bank</h1>
+         <div class="submit-area">
+             <h4>login</h4>
+             <input type="text" class="form-control" placeholder="Email"><br>
+             <input type="password" class="form-control" placeholder="password"><br>
+             <button id="login" class="btn btn-success">Enter</button>
+         </div>
+   </div>
+<!--Part 1 (Form) End-->
+
+
+<!--Status Div deposite, withdraw, balance Start-->
+   <div id="transaction-area">
+    <!--deposite, withdraw, balance Start-->
+       <div class="row">
+           <div class="col-md-4 ">
+               <div class="deposit status">
+                    <h6>Deposit</h6>
+                    <h2>$ <span id="currentdeposit">00</span></h2>
+              </div>
+           </div>
+           <div class="col-md-4 ">
+               <div class="withdraw status">
+                    <h6>Withdraw</span></h6>
+                    <h2>$ <span id="currentwithdraw">00</span></h2>
+               </div>  
+           </div>
+           <div class="col-md-4 ">
+               <div class="balance status">
+                    <h6>Balance</h6>
+                    <h2>$ <span id="currenttotalBalance"> 1240</span></h2>
+               </div>
+           </div>
+       </div>
+        <!--deposite, withdraw, balance END-->
+
+
+      <!--Form deposie, withdraw  start-->
+       <div class="row">
+           <div class="col-md-6">
+               <div class="submit-area">
+                    <h5>Deposit</h5>
+                    <input id="inputdepositAmmount" type="text" class="form-control" placeholder="$ amount you want to deposit"><br>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
+               </div>
+           </div>
+           <div class="col-md-6">
+               <div class="submit-area">
+                    <h5>Withdraw</h5>
+                    <input id="withdrawammount" type="text" class="form-control" placeholder="$ amount you want to withdraw"><br>
+                    <button id="addWithdraw" class="btn btn-success">Withdraw</button>
+               </div>
+           </div>
+       </div>
+       <!--deposie, withdraw form END-->
+   </div>
+<!--Status Div deposite, withdraw, balance END-->
+
+
+
+
+
+
+
+   
+   <script>
+ //hide & display element By click Event Handler//
+      const loginBtn = document.getElementById("login");
+      loginBtn.addEventListener("click", function(){
+
+           //hide element By click //
+          const loginArea = document.getElementById("login-area");
+          loginArea.style.display = "none";
+
+          //display element By click//
+          const transactionArea = document.getElementById("transaction-area");
+          transactionArea.style.display = "block";
+      })
+
+
+//Deposite Button Event handler
+      const depositBtn = document.getElementById("addDeposit");
+      depositBtn.addEventListener("click", function(){
+
+           //Input deposit Ammount convert string to number
+            const depositAmmount = document.getElementById("inputdepositAmmount").value;
+            const depositNumber = parseFloat(depositAmmount);
+            //Current Diposit Ammount convert string to number
+            const currentDeposit = document.getElementById("currentdeposit").innerText;
+            const currentDepositNumber = parseFloat(currentDeposit);
+            //Add Input Ammount & Current deposite Ammount
+            const totalDeposit =  depositNumber + currentDepositNumber;
+            document.getElementById("currentdeposit").innerText = totalDeposit; 
+
+
+
+            //Current total Ammount convert string to number
+            const currentTotalBalance = document.getElementById("currenttotalBalance").innerText;
+            const currentTotalBalanceNumber = parseFloat(currentTotalBalance);
+            //Add Input Ammount & Current total  Ammount
+            const updatedCurrentBalance =depositNumber + currentTotalBalanceNumber;
+            document.getElementById("currenttotalBalance").innerText = updatedCurrentBalance;
+
+
+            //make null of Input area  
+            document.getElementById("inputdepositAmmount").value = "";
+      })
+
+
+//Withdraw Button Event handler
+      const withdrawBtn = document.getElementById("addWithdraw");
+      withdrawBtn.addEventListener("click", function(){
+
+        //Input withdraw Ammount convert string to number
+          const withdrawAmmount = document.getElementById("withdrawammount").value;
+          const withdrawAmmountNumber = parseFloat(withdrawAmmount);
+       //Current withdraw Ammount convert string to number
+       const withdraw = document.getElementById("currentwithdraw").innerText;
+       const WithdrawNumber = parseFloat(withdraw);
+        //ADD Input Ammount & Current withdraw Ammount
+        const totalWithdraw = withdrawAmmountNumber + WithdrawNumber ;
+        document.getElementById("currentwithdraw").innerText = totalWithdraw; 
+
+
+
+
+        //Current Diposit Ammount convert string to number
+        const currentDeposit = document.getElementById("currentdeposit").innerText;
+        const currentDepositNumber = parseFloat(currentDeposit);
+        //Sub deposit $ withdraw ammount
+        const updatedDeposit = currentDepositNumber - withdrawAmmountNumber ;
+        document.getElementById("currentdeposit").innerText = updatedDeposit;
+
+        
+        //Current total Ammount convert string to number
+        const currentTotalBalance = document.getElementById("currenttotalBalance").innerText;
+        const currentTotalBalanceNumber = parseFloat(currentTotalBalance);
+        //SUB Withdraw Ammount & Current total  Ammount
+        const updatedCurrentBalance = currentTotalBalanceNumber -  withdrawAmmountNumber;
+        document.getElementById("currenttotalBalance").innerText = updatedCurrentBalance;
+
+        //make null of Input area  
+        document.getElementById("withdrawammount").value = "";
+      })
+
+
+   </script>
+
+</body>
+</html>
