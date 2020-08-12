@@ -80,6 +80,7 @@
    
    <script>
  //hide & display element By click Event Handler//
+     
       const loginBtn = document.getElementById("login");
       loginBtn.addEventListener("click", function(){
 
@@ -92,7 +93,6 @@
           transactionArea.style.display = "block";
       })
 
-
 //Deposite Button Event handler
       const depositBtn = document.getElementById("addDeposit");
       depositBtn.addEventListener("click", function(){
@@ -100,25 +100,33 @@
            //Input deposit Ammount convert string to number
             const depositAmmount = document.getElementById("inputdepositAmmount").value;
             const depositNumber = parseFloat(depositAmmount);
-            //Current Diposit Ammount convert string to number
-            const currentDeposit = document.getElementById("currentdeposit").innerText;
-            const currentDepositNumber = parseFloat(currentDeposit);
-            //Add Input Ammount & Current deposite Ammount
-            const totalDeposit =  depositNumber + currentDepositNumber;
-            document.getElementById("currentdeposit").innerText = totalDeposit; 
+
+            if(depositNumber < 0){
+                alert("Deposit number can not be negative");
+            }
+
+            else{
+                 //Current Diposit Ammount convert string to number
+                const currentDeposit = document.getElementById("currentdeposit").innerText;
+                const currentDepositNumber = parseFloat(currentDeposit);
+                //Add Input Ammount & Current deposite Ammount
+                const totalDeposit =  depositNumber + currentDepositNumber;
+                document.getElementById("currentdeposit").innerText = totalDeposit; 
 
 
 
-            //Current total Ammount convert string to number
-            const currentTotalBalance = document.getElementById("currenttotalBalance").innerText;
-            const currentTotalBalanceNumber = parseFloat(currentTotalBalance);
-            //Add Input Ammount & Current total  Ammount
-            const updatedCurrentBalance =depositNumber + currentTotalBalanceNumber;
-            document.getElementById("currenttotalBalance").innerText = updatedCurrentBalance;
+                //Current total Ammount convert string to number
+                const currentTotalBalance = document.getElementById("currenttotalBalance").innerText;
+                const currentTotalBalanceNumber = parseFloat(currentTotalBalance);
+                //Add Input Ammount & Current total  Ammount
+                const updatedCurrentBalance =depositNumber + currentTotalBalanceNumber;
+                document.getElementById("currenttotalBalance").innerText = updatedCurrentBalance;
 
 
-            //make null of Input area  
-            document.getElementById("inputdepositAmmount").value = "";
+                //make null of Input area  
+                document.getElementById("inputdepositAmmount").value = "";
+            }
+           
       })
 
 
@@ -132,6 +140,7 @@
        //Current withdraw Ammount convert string to number
        const withdraw = document.getElementById("currentwithdraw").innerText;
        const WithdrawNumber = parseFloat(withdraw);
+       
         //ADD Input Ammount & Current withdraw Ammount
         const totalWithdraw = withdrawAmmountNumber + WithdrawNumber ;
         document.getElementById("currentwithdraw").innerText = totalWithdraw; 
